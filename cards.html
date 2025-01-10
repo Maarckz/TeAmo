@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Amor com Cards</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Pacifico', cursive;
+            background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .card-container {
+            position: relative;
+            width: 90%;
+            max-width: 400px;
+            height: 500px;
+        }
+
+        .card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .hidden {
+            opacity: 0;
+            transform: translateY(-50px);
+            pointer-events: none;
+        }
+
+        .card .question {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .card button {
+            background: #ff6f91;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+
+        .card button:hover {
+            background: #ff3e5c;
+        }
+
+        .result {
+            font-size: 2em;
+            margin-top: 20px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <!-- Card 1 -->
+        <div class="card" id="card1">
+            <div class="question">Qual é o meu sentimento mais forte por você?</div>
+            <button onclick="showResponseCard(1, 'Carinho', 'Eu sinto um carinho tão especial por você que ilumina meus dias!')">Carinho</button>
+            <button onclick="showResponseCard(1, 'Amor infinito', 'Meu amor por você é infinito, não tem começo nem fim!')">Amor infinito</button>
+            <button onclick="showResponseCard(1, 'Admiração', 'Admiro tudo o que você é e o que representa para mim!')">Admiração</button>
+        </div>
+        <!-- Card 2 -->
+        <div class="card hidden" id="card2">
+            <div class="question">Qual o nosso momento mais especial juntos?</div>
+            <button onclick="showResponseCard(2, 'Primeiro beijo', 'Nosso primeiro beijo foi mágico, cheio de timidez e emoção!')">Primeiro beijo</button>
+            <button onclick="showResponseCard(2, 'Viagem', 'Aquela viagem foi cheia de risadas e memórias inesquecíveis!')">Viagem</button>
+            <button onclick="showResponseCard(2, 'Todos os momentos', 'Todos os momentos com você são especiais e únicos!')">Todos os momentos</button>
+        </div>
+        <!-- Card 3 -->
+        <div class="card hidden" id="card3">
+            <div class="question">Se você pudesse descrever nosso amor em uma palavra, qual seria?</div>
+            <button onclick="showResponseCard(3, 'Eterno', 'Nosso amor é eterno, transcende o tempo e o espaço!')">Eterno</button>
+            <button onclick="showResponseCard(3, 'Intenso', 'Cada momento com você é vivido com intensidade e paixão!')">Intenso</button>
+            <button onclick="showResponseCard(3, 'Mágico', 'Nosso amor é mágico, como se fosse tirado de um conto de fadas!')">Mágico</button>
+        </div>
+        <!-- Final Message -->
+        <div class="card hidden" id="finalCard">
+            <div class="question">Você chegou ao fim!</div>
+            <div class="result">Eu te amo mais do que palavras podem expressar!</div>
+        </div>
+    </div>
+
+    <script>
+        function showResponseCard(currentCard, answer, responseText) {
+            const responseCard = document.createElement('div');
+            responseCard.classList.add('card');
+            responseCard.innerHTML = `
+                <div class="question">${responseText}</div>
+                <button onclick="showNextCard(${currentCard}, this)">Próximo</button>
+            `;
+
+            const container = document.querySelector('.card-container');
+            container.appendChild(responseCard);
+
+            document.getElementById(`card${currentCard}`).classList.add('hidden');
+        }
+
+        function showNextCard(currentCard, responseButton) {
+            const nextCard = document.getElementById(`card${currentCard + 1}`);
+            const finalCard = document.getElementById('finalCard');
+
+            const responseCard = responseButton.parentElement;
+            responseCard.classList.add('hidden');
+
+            setTimeout(() => {
+                responseCard.remove();
+                if (nextCard) {
+                    nextCard.classList.remove('hidden');
+                } else if (currentCard === 3) {
+                    finalCard.classList.remove('hidden');
+                }
+            }, 500);
+        }
+    </script>
+</body>
+</html>

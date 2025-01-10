@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Jornada do Nosso Universo</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #1a3c5d;
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.4s ease;
+        }
+
+        .star.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        button {
+            background: #4682b4;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1.2em;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #315d75;
+        }
+
+        #result {
+            font-size: 1.5em;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container" id="game">
+        <h1>A Jornada do Nosso Universo</h1>
+        <p>Vamos criar nosso próprio universo, cheio de estrelas e histórias. Toque para começar nossa jornada.</p>
+        <div class="button-container">
+            <button onclick="startJourney()">Iniciar Jornada</button>
+        </div>
+    </div>
+
+    <script>
+        let journeySteps = [];
+        let currentStep = 0;
+
+        function startJourney() {
+            document.getElementById("game").innerHTML = "<h1>Nosso Universo Está Vazio...</h1><p>Cada estrela que você criar vai iluminar nosso céu e formar nossa história.</p>";
+            setTimeout(createStars, 1000);  // Inicia com a criação de estrelas após 1 segundo
+        }
+
+        function createStars() {
+            let numStars = 12;  // Número de estrelas a serem criadas
+            for (let i = 0; i < numStars; i++) {
+                let x = Math.random() * window.innerWidth;
+                let y = Math.random() * window.innerHeight;
+                let size = Math.random() * 3 + 2;  // Tamanho das estrelas entre 2 e 5px
+                let star = createStarElement(x, y, size);
+                document.body.appendChild(star);
+                setTimeout(() => { star.classList.add("visible"); }, i * 100);  // Atraso entre a criação das estrelas
+            }
+
+            setTimeout(() => { nextStep("Escolha um sonho para a nossa estrela.") }, 2000);  // Próxima etapa após todas as estrelas aparecerem
+        }
+
+        function createStarElement(x, y, size) {
+            let star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = `${x - size / 2}px`;
+            star.style.top = `${y - size / 2}px`;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            return star;
+        }
+
+        function nextStep(message) {
+            let buttonContainer = document.createElement("div");
+            buttonContainer.classList.add("button-container");
+
+            let button1 = createButton("Criar um sonho", () => createStarsOnClick("Sonho"));
+            let button2 = createButton("Criar nossa história", () => createStarsOnClick("História"));
+            buttonContainer.appendChild(button1);
+            buttonContainer.appendChild(button2);
+
+            document.getElementById("game").innerHTML = `<p>${message}</p>`;
+            document.getElementById("game").appendChild(buttonContainer);
+        }
+
+        function createButton(text, onClick) {
+            let button = document.createElement('button');
+            button.innerHTML = text;
+            button.onclick = onClick;
+            return button;
+        }
+
+        function createStarsOnClick(type) {
+            let numStars = 12;  // Número de estrelas a serem criadas
+            for (let i = 0; i < numStars; i++) {
+                let x = Math.random() * window.innerWidth;
+                let y = Math.random() * window.innerHeight;
+                let size = Math.random() * 3 + 2;  // Tamanho das estrelas entre 2 e 5px
+                let star = createStarElement(x, y, size);
+                document.body.appendChild(star);
+                setTimeout(() => { star.classList.add("visible"); }, i * 100);  // Atraso entre a criação das estrelas
+            }
+
+            journeySteps.push(`${type} criada em nosso universo.`); // Armazenar o tipo de criação
+
+            setTimeout(() => { showResults(); }, 2000);  // Mostra o resultado após as estrelas aparecerem
+        }
+
+        function showResults() {
+            let resultHTML = "<h2>Nosso Universo Criado!</h2><p>Nossa jornada foi incrível, e nosso céu está agora cheio de estrelas:</p>";
+            journeySteps.forEach(step => {
+                resultHTML += `<p>${step}</p>`;
+            });
+            resultHTML += "<div id='result'>Nossa jornada está apenas começando. 💖</div>";
+            document.getElementById("game").innerHTML = resultHTML;
+        }
+    </script>
+
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .star {
+      position: absolute;
+      font-size: 20px;
+      animation: float 2s ease-in forwards;
+      background-color: transparent;
+
+    }
+
+    @keyframes float {
+      0% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(0) translateY(-300px);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    let stars = 0;
+    document.body.addEventListener('mousemove', (event) => {
+      // Criar um elemento 'i' com as classes do FontAwesome para a estrela
+      const star = document.createElement('i');
+      star.classList.add('star', 'fa', 'fa-star');
+      
+      // Posições aleatórias ao redor do mouse
+      const mouseX = event.clientX + (Math.random() - 0.5) * 50;
+      const mouseY = event.clientY + (Math.random() - 0.5) * 50;
+      
+      star.style.left = `${mouseX - 15}px`;
+      star.style.top = `${mouseY - 15}px`;
+      star.style.opacity = Math.random().toFixed(2);
+      // Adicionar cor aleatória à estrela
+      star.style.color = `rgba(255, 215, 0, ${Math.random().toFixed(2)})`;
+      // Adicionar a estrela ao corpo
+      document.body.appendChild(star);
+      // Remover a estrela após 2 segundos
+      setTimeout(() => {
+        star.remove();
+        stars--;
+      }, 2000);
+      // Limitar o número de estrelas na tela
+      if (stars < 5) {
+        stars++;
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+</body>
+</html>

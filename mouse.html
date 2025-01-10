@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estrelas ao clicar</title>
+  <!-- Inclusão do FontAwesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f0f0f0;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .star {
+      position: absolute;
+      font-size: 20px;
+      animation: float 2s ease-in forwards;
+      background-color: transparent;
+    }
+
+    @keyframes float {
+      0% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(0) translateY(-300px);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    let stars = 0;
+    document.body.addEventListener('mousemove', (event) => {
+      // Criar um elemento 'i' com as classes do FontAwesome para a estrela
+      const star = document.createElement('i');
+      star.classList.add('star', 'fa', 'fa-star');
+      
+      // Posições aleatórias ao redor do mouse
+      const mouseX = event.clientX + (Math.random() - 0.5) * 50;
+      const mouseY = event.clientY + (Math.random() - 0.5) * 50;
+      
+      star.style.left = `${mouseX - 15}px`;
+      star.style.top = `${mouseY - 15}px`;
+      star.style.opacity = Math.random().toFixed(2);
+      // Adicionar cor aleatória à estrela
+      star.style.color = `rgba(255, 215, 0, ${Math.random().toFixed(2)})`;
+      // Adicionar a estrela ao corpo
+      document.body.appendChild(star);
+      // Remover a estrela após 2 segundos
+      setTimeout(() => {
+        star.remove();
+        stars--;
+      }, 2000);
+      // Limitar o número de estrelas na tela
+      if (stars < 5) {
+        stars++;
+      }
+    });
+  </script>
+</body>
+</html>
+
