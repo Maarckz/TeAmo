@@ -1,13 +1,8 @@
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            animation: fade 1.5s ease-out;
-            background-color: rgb(245, 227, 240);
+    
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
-        }
+    <style>
+  
         
         @keyframes fade {
             0% {
@@ -213,8 +208,44 @@
                 transform: scaleX(0.85);
             }
         }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            animation: fade 1.5s ease-out;
+            background-color: rgb(248, 218, 240);
+            font-family: 'Pacifico', cursive;
+
+        }
+        .question {
+            font-size: 50px;
+            position: absolute;
+            top: 160px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            text-shadow: 0 0 10px rgba(0,0,0,0.2);
+            animation: anima 3s ease-in-out infinite;
+        }
+
+        @keyframes anima {
+            0% {
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.2);
+            }
+            100% {
+                transform: translateX(-50%) scale(1);
+            }
+        }
     </style>
-    <div class="container">  
+
+    <div>
+        <div class="question">Olá amor, tudo bem?</div>
+    </div>
+    <div class="container" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">  
         <div class="valentines">
             <div class="envelope"></div>
             <div class="front"></div>
@@ -310,8 +341,26 @@
         hearts++;
       }
     });
+
   </script>
+
+    <style>
+        body {
+            display: none;
+        }
+        @media (min-width: 768px) {
+            body {
+                display: block;
+            }
+        }
+    </style>
+        <script>
+        if (window.innerWidth < 768) {
+            document.body.innerHTML = '<h1>Por favor, abra este site em um computador.</h1>';
+        }
+    </script>
+
+
 </body>
 </html>
-
 

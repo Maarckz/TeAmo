@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: 'Pacifico', cursive;
-            background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+            background: linear-gradient(120deg,     #ff6565, #fc77ea);
             color: #333;
             text-align: center;
             margin: 0;
@@ -44,12 +44,12 @@
 
         .heart {
             position: absolute;
-            bottom: -10px;
+            bottom: -25px;
             width: 20px;
             height: 20px;
-            background: #ff6f91;
+            background: #ffffff;
             transform: rotate(45deg);
-            animation: floatUp 5s linear infinite, fadeOut 5s linear infinite;
+            animation: floatUp 6s linear infinite, fadeOut 6s linear infinite;
         }
 
         .heart::before,
@@ -106,7 +106,7 @@
             height: 100%;
             background: white;
             border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -139,15 +139,32 @@
         }
 
         .card button:hover {
-            background: #ff3e5c;
+            background: #ffe2fa;
+            color: #ff6f91;
+            font-weight: bold;
         }
 
         .result {
             font-size: 2em;
             margin-top: 20px;
+            margin-bottom: 20px;
+
             color: #555;
         }
-    
+        .card button {
+            background: #ff6f91;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border-radius: 8px;
+            cursor: pointer;
+            width: calc(100% - 40px);
+            transition: background 0.3s;
+            box-shadow: 0 8px 16px rgba(255, 36, 189, 0.2);
+
+        }
+        
     </style>
 </head>
 <body>
@@ -155,29 +172,40 @@
     <div class="card-container">
         <!-- Card 1 -->
         <div class="card" id="card1">
-            <div class="question">Qual é o meu sentimento mais forte por você?</div>
+            <div class="question">Qual o  sentimento mais forte que eu sinto por você?</div>
             <button onclick="showResponseCard(1, 'Carinho', 'Eu sinto um carinho tão especial por você que ilumina meus dias!')">Carinho</button>
-            <button onclick="showResponseCard(1, 'Amor infinito', 'Meu amor por você é infinito, não tem começo nem fim!')">Amor infinito</button>
+            <button onclick="showResponseCard(1, 'Amor', 'Meu amor por você é infinito, não tem começo nem fim!')">Amor infinito</button>
             <button onclick="showResponseCard(1, 'Admiração', 'Admiro tudo o que você é e o que representa para mim!')">Admiração</button>
+            <button onclick="showResponseCard(1, 'Respeito', 'Um sentimento que adiquiri ao longo da nossa jornada, por todo puxão de orelha que me deu. hahaha')">Respeito</button>
+
         </div>
         <!-- Card 2 -->
         <div class="card hidden" id="card2">
-            <div class="question">Qual o nosso momento mais especial juntos?</div>
-            <button onclick="showResponseCard(2, 'Primeiro beijo', 'Nosso primeiro beijo foi mágico, cheio de timidez e emoção!')">Primeiro beijo</button>
-            <button onclick="showResponseCard(2, 'Viagem', 'Aquela viagem foi cheia de risadas e memórias inesquecíveis!')">Viagem</button>
-            <button onclick="showResponseCard(2, 'Todos os momentos', 'Todos os momentos com você são especiais e únicos!')">Todos os momentos</button>
+            <div class="question">Qual o foi o momento mais especial juntos?</div>
+            <button onclick="showResponseCard(2, 'Primeiro beijo', 'Nosso primeiro beijo um tanto diferente, cheio de safadeza e timidez! Hahaha')">Primeiro beijo</button>
+            <button onclick="showResponseCard(2, 'Primeiro: Eu te amo', 'Não lembro quem foi o primeiro, mas sei que aprendi a te amar, e desejar querer te amar todos os dias.')">Primeiro: Eu te amo</button>
+            <button onclick="showResponseCard(2, 'Pedido de Namoro', 'Um tanto diferente, mas não me arrependo em nenhum momento disso!')">Pedido de Namoro</button>
         </div>
         <!-- Card 3 -->
         <div class="card hidden" id="card3">
             <div class="question">Se você pudesse descrever nosso amor em uma palavra, qual seria?</div>
-            <button onclick="showResponseCard(3, 'Eterno', 'Nosso amor é eterno, transcende o tempo e o espaço!')">Eterno</button>
-            <button onclick="showResponseCard(3, 'Intenso', 'Cada momento com você é vivido com intensidade e paixão!')">Intenso</button>
-            <button onclick="showResponseCard(3, 'Mágico', 'Nosso amor é mágico, como se fosse tirado de um conto de fadas!')">Mágico</button>
+            <button onclick="showResponseCard(3, 'Incrível', 'Nosso amor é incrível porque nos faz refletir o quão importante, um é para o outro')">Incrível</button>
+            <button onclick="showResponseCard(3, 'Intenso', 'Cada momento com você é vivido com intensidade e carinho!')">Intenso</button>
+            <button onclick="showResponseCard(3, 'Safado', 'Como não ser safado, tenho uma mulher super gostosa! 😋')">Safado</button>
+            <button onclick="showResponseCard(3, 'Louco', 'Louco? Só se for um pelo outro, porque nem era pra ter esta resposta aqui. 😅')">Louco</button>
+        </div>
+        <!-- Card 3 -->
+        <div class="card hidden" id="card4">
+            <div class="question">Você é feliz comigo?</div>
+            <button onclick="showResponseCard(4, 'Com certeza', 'Que ótimo saber disso! Saiba que sou extremamente feliz com você também!')">Com certeza</button>
+            <button onclick="showResponseCard(4, 'Sim', 'Não existe opção negativa neste quiz, culpe o desenvolvedor por isso!')">Sim</button>
+            <button onclick="showResponseCard(4, 'Claro', 'Ufa! Fiquei preocupado de você dizer que não! Te amo.')">Claro</button>
         </div>
         <!-- Final Message -->
         <div class="card hidden" id="finalCard">
-            <div class="question">Você chegou ao fim!</div>
-            <div class="result">Eu te amo mais do que palavras podem expressar!</div>
+            <div class="question">Este Quiz acabou.</div>
+            <div class="result">Bem.. Saiba que eu te amo mais do que palavras podem expressar!</div>
+            <button onclick="window.location.href='memoria.html'">Continuar</button>
         </div>
     </div>
 
@@ -207,7 +235,7 @@
                 responseCard.remove();
                 if (nextCard) {
                     nextCard.classList.remove('hidden');
-                } else if (currentCard === 3) {
+                } else if (currentCard === 4) {
                     finalCard.classList.remove('hidden');
                 }
             }, 500);
